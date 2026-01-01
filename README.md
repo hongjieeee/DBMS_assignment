@@ -1,150 +1,130 @@
-Overview
+# SQL Injection Prevention Performance Benchmark
 
-This repository contains the source code, datasets, and benchmarking scripts used in the experimental evaluation of SQL Injection (SQLi) prevention techniques in a MySQL Database Management System (DBMS).
+## Overview
+This repository contains the source code, datasets, and benchmarking scripts used in the experimental evaluation of **SQL Injection (SQLi) prevention techniques** in a MySQL Database Management System (DBMS).
 
-The objective of this project is to quantitatively measure the performance overhead introduced by common SQL Injection prevention techniques when compared to unsafe SQL execution. The evaluation focuses on query latency, CPU utilization, and throughput, highlighting the trade‑off between database security and system efficiency.
+The objective of this project is to **quantitatively measure the performance overhead** introduced by common SQL Injection prevention techniques when compared to unsafe SQL execution. The evaluation focuses on **query latency**, **CPU utilization**, and **throughput**, highlighting the trade‑off between database security and system efficiency.
 
-This work supports the experimental results presented in the accompanying IEEE‑style research paper.
+This work supports the experimental results presented in the accompanying IEEE-style research paper.
 
-SQL Injection Handling Techniques Evaluated
+---
 
+## SQL Injection Handling Techniques Evaluated
 The following SQL injection handling techniques are benchmarked:
 
-Unsafe SQL Queries (Baseline)
+1. **Unsafe SQL Queries (Baseline)**  
+   - Direct string-concatenated SQL queries  
+   - No SQL Injection protection  
 
-Direct string‑concatenated SQL queries
+2. **Prepared Statements**  
+   - Parameterized queries using MySQL Connector/Python  
 
-No SQL Injection protection
+3. **Stored Procedures**  
+   - Server-side stored procedure invocation  
 
-Prepared Statements
+4. **Input Validation**  
+   - Application-level sanitization before query execution  
 
-Parameterized queries using MySQL Connector/Python
+---
 
-Stored Procedures
+## Experimental Environment
+- **Database**: MySQL (Local instance)
+- **Dataset Size**: 99,991 records
+- **Workload**: Read-only SELECT queries
+- **Iterations per Technique**: 10,000
+- **Client**: Python 3
+- **Operating Mode**: Single-machine, localhost execution
 
-Server‑side stored procedure invocation
+---
 
-Input Validation
-
-Application‑level sanitization before query execution
-
-Experimental Environment
-
-Database: MySQL (Local instance)
-
-Dataset Size: 99,991 records
-
-Workload: Read‑only SELECT queries
-
-Iterations per Technique: 10,000
-
-Client: Python 3
-
-Operating Mode: Single‑machine, localhost execution
-
-Evaluation Metrics
-
+## Evaluation Metrics
 The following metrics are collected for each technique:
 
-Average Latency (ms)
-Time taken to execute a single query.
+- **Average Latency (ms)**  
+  Time taken to execute a single query.
 
-CPU Utilization (%)
-Average CPU usage during query execution.
+- **CPU Utilization (%)**  
+  Average CPU usage during query execution.
 
-Throughput (queries/second)
-Number of queries processed per second.
+- **Throughput (queries/second)**  
+  Number of queries processed per second.
 
-Latency Overhead (%)
+- **Latency Overhead (%)**  
+  Computed relative to the Baseline:
+
+- **CPU Overhead (%)**  
 Computed relative to the Baseline:
 
-(Latency_technique − Latency_baseline) / Latency_baseline × 100
+---
 
-
-CPU Overhead (%)
-Computed relative to the Baseline:
-
-CPU_technique − CPU_baseline
-
-Repository Structure
-.
-├── baseline.py                 # Unsafe SQL query benchmark
-├── prepared_statement.py       # Prepared statement benchmark
-├── stored_procedures.py         # Stored procedure benchmark
-├── input_validation.py         # Input validation benchmark
-├── run_all_benchmarks.py       # Executes all benchmark scripts
-├── log_csv.py                  # Shared CSV logging utility
-├── config.py                   # Database configuration and constants
+## Repository Structure
+├── baseline.py # Unsafe SQL query benchmark
+├── prepared_statement.py # Prepared statement benchmark
+├── stored_procedure.py # Stored procedure benchmark
+├── input_validation.py # Input validation benchmark
+├── run_all_benchmarks.py # Executes all benchmark scripts
+├── log_csv.py # Shared CSV logging utility
+├── config.py # Database configuration and constants
+├── results.csv # Raw experimental results
+├── combined_results.csv # Aggregated results (optional)
 ├── dataset/
-│   └── SocialMediaUsersDataset.csv
+│ └── SocialMediaUsersDataset.csv
 └── README.md
+---
 
-Configuration
-config.py
+## Configuration
 
+### `config.py`
 Edit this file before running experiments:
 
+```python
 DB_CONFIG = {
     "host": "localhost",
     "user": "root",
     "password": "your_password",
     "database": "DBMS"
 }
-
-TEST_COUNTRY = "United States"
+TEST_COUNTRY = "Malaysia"
 ITERATIONS = 10000
+```
 
-How to Run the Experiments
+## How to Run the Experiments
 Step 1: Install Dependencies
 pip install mysql-connector-python psutil numpy pandas
 
-Step 2: Run All Benchmarks
-python run_all_benchmarks.py
+Step 2: Run All Scirpts
+python run_script.py
 
 
 Each technique is executed sequentially, and results are logged to results.csv.
 
-Output
-
-The benchmarking scripts generate:
-
-results.csv – Raw results per technique
-
-combined_results.csv – Aggregated output (optional)
-
-Example output format:
-
-Technique	Iterations	Avg Latency (ms)	CPU Usage (%)	Throughput (qps)
-Baseline	10000	23.81	2.59	42.00
-Prepared Statement	10000	24.60	2.65	40.65
-Reproducibility
+##Reproducibility
 
 To ensure reproducibility:
 
-All scripts are deterministic
-
-Dataset is included
-
-Experimental parameters are centralized in config.py
-
-Results are logged in CSV format
+    All scripts are deterministic
+    
+    Dataset is included
+    
+    Experimental parameters are centralized in config.py
+    
+    Results are logged in CSV format
 
 Limitations
 
-Experiments are conducted on a local MySQL instance
+    Experiments are conducted on a local MySQL instance
 
-No concurrent clients
+    No concurrent clients
 
-No cold‑start or distributed database configuration
+    No cold-start or distributed database configuration
 
-Results reflect single‑machine performance characteristics
+    Results reflect single-machine performance characteristics
 
-These limitations are acknowledged in the paper’s discussion section.
 
 License
 
-This project is intended for academic and educational purposes only.
+    This project is intended for academic and educational purposes only.
 
 Citation
 
-If you use this code or dataset, please cite the associated research paper or acknowledge the repository accordingly.
+    If you use this code or dataset, please cite the associated research paper or acknowledge the repository accordingly.
