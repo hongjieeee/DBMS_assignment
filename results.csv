@@ -1,0 +1,5 @@
+Technique,Iterations,Total_Time_s,Avg_Latency_ms,Throughput_qps,CPU_Time_s
+Baseline,10000,238.090776,23.806795,42.00,2.59
+Prepared Statement,10000,246.021862,24.599947,40.65,2.65
+Stored Procedure,10000,249.594939,24.956930,40.06,5.51
+Input Validation,10000,239.868326,23.984547,41.69,2.68
