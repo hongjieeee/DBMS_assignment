@@ -57,21 +57,6 @@ Computed relative to the Baseline:
 
 ---
 
-## Repository Structure
-├── baseline.py # Unsafe SQL query benchmark
-├── prepared_statement.py # Prepared statement benchmark
-├── stored_procedure.py # Stored procedure benchmark
-├── input_validation.py # Input validation benchmark
-├── run_all_benchmarks.py # Executes all benchmark scripts
-├── log_csv.py # Shared CSV logging utility
-├── config.py # Database configuration and constants
-├── results.csv # Raw experimental results
-├── combined_results.csv # Aggregated results (optional)
-├── dataset/
-│ └── SocialMediaUsersDataset.csv
-└── README.md
----
-
 ## Configuration
 
 ### `config.py`
@@ -90,10 +75,10 @@ ITERATIONS = 10000
 
 ## How to Run the Experiments
 Step 1: Install Dependencies
-pip install mysql-connector-python psutil numpy pandas
+   pip install mysql-connector-python psutil numpy pandas
 
 Step 2: Run All Scirpts
-python run_script.py
+   python run_script.py
 
 
 Each technique is executed sequentially, and results are logged to results.csv.
