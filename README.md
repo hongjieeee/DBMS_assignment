@@ -69,7 +69,7 @@ DB_CONFIG = {
     "password": "your_password",
     "database": "DBMS"
 }
-TEST_COUNTRY = "Malaysia"
+TEST_COUNTRY = "United States"
 ITERATIONS = 10000
 ```
 
