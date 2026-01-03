@@ -43,16 +43,16 @@ The following metrics are collected for each technique:
 - **Average Latency (ms)**  
   Time taken to execute a single query.
 
-- **CPU Utilization (%)**  
-  Average CPU usage during query execution.
-
 - **Throughput (queries/second)**  
   Number of queries processed per second.
 
 - **Latency Overhead (%)**  
   Computed relative to the Baseline:
 
-- **CPU Overhead (%)**  
+- **CPU Processing Time (s)**  
+Time taken to execute the query:
+
+- **CPU Overhead (s)**  
 Computed relative to the Baseline:
 
 ---
@@ -74,12 +74,14 @@ ITERATIONS = 10000
 ```
 
 ## How to Run the Experiments
-Step 1: Install Dependencies
+# Step 1: Install Dependencies
+   ```python
    pip install mysql-connector-python psutil numpy pandas
-
-Step 2: Run All Scirpts
+   ```
+# Step 2: Run All Scirpts
+   ```terminal
    python run_script.py
-
+   ```
 
 Each technique is executed sequentially, and results are logged to results.csv.
 
