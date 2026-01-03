@@ -79,8 +79,8 @@ ITERATIONS = 10000
    pip install mysql-connector-python psutil numpy pandas
    ```
 # Step 2: Run All Scirpts
-   ```terminal
-   python run_script.py
+   ```python
+   python3 run_script.py
    ```
 
 Each technique is executed sequentially, and results are logged to results.csv.
